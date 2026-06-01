@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Metal Construct | Confecții Metalice Premium</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a1a1a;       
+            --accent: #e67e22;        
+            --light: #f9f9f9;         
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --card-bg: #ffffff;
+            --nav-height: 74px;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--primary);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            height: var(--nav-height);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 25px 0;
+            display: inline-block;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent);
+        }
+
+        /* --- DROPDOWN STYLES --- */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background-color: #242424;
+            width: 450px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            list-style: none;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            border-top: 3px solid var(--accent);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li { 
+            margin: 0; 
+            display: block; 
+            text-align: center;
+        }
+
+        .dropdown-menu li a { 
+            padding: 10px 5px; 
+            display: block; 
+            font-size: 13px; 
+            color: #ccc; 
+        }
+
+        .dropdown-menu li a:hover { 
+            background-color: #1a1a1a; 
+            color: var(--accent); 
+        }
+
+        /* --- MOBILE MENU HAMBURGER --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        /* --- PARALLAX & GLASSMORPHISM GLOBALE --- */
+        .parallax-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80') no-repeat center center / cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.85); 
+            padding: 50px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            backdrop-filter: blur(8px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            margin: 0 auto; 
+            text-align: left; 
+            color: #eaeaea; 
+            line-height: 1.8;
+        }
+        
+        .glass-panel h2.section-title, .glass-panel h3 { color: #ffffff; }
+        .glass-panel strong { color: #fff; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: transparent;
+            height: 40vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 0;
+            padding-top: var(--nav-height);
+        }
+
+        .hero-content h1 { font-size: 45px; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
+        .hero-content p { font-size: 18px; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 12px 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { background-color: #d35400; }
+
+        /* --- VIEWS --- */
+        .page-view { display: none; flex-grow: 1; }
+        .page-view.active-view { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- CONTENT CONTAINER --- */
+        .content-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px 20px; padding-top: calc(var(--nav-height) + 40px); }
+        .section-title { text-align: center; font-size: 32px; text-transform: uppercase; margin-bottom: 40px; position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--accent); }
+        
+        /* --- PRODUCT GRID & CARDS --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .product-card { background-color: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; height: 350px; }
+        .product-card:hover { transform: translateY(-7px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .product-image { height: 100%; width: 100%; background-color: #ddd; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .product-card:hover .product-image img { transform: scale(1.05); }
+        
+        .empty-message { text-align: center; color: #ccc; font-style: italic; grid-column: 1 / -1; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 8px; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #111; color: #777; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 32px; }
+            .parallax-bg { background-attachment: scroll; } 
+            .glass-panel { padding: 30px 20px; }
+            .hamburger { display: flex; }
+            
+            nav ul {
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+            
+            nav ul.show-menu { max-height: 400px; }
+            nav ul li { margin: 0; width: 100%; border-bottom: 1px solid #333; }
+            nav ul li a { padding: 15px 20px; display: block; width: 100%; }
+            
+            .dropdown-menu { position: static; visibility: visible; opacity: 1; transform: none; background-color: #1a1a1a; box-shadow: none; border: none; display: none; padding: 0; }
+            .dropdown:hover .dropdown-menu { display: block; }
+            .dropdown-menu li { border-bottom: none; }
+            .dropdown-menu li a { padding: 12px 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo" data-target="acasa">Total Metal <span>Construct</span></div>
+            
+            <div class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav>
+                <ul id="nav-links">
+                    <li><a class="nav-btn active" data-target="acasa" id="nav-acasa">Acasă</a></li>
+                    <li><a class="nav-btn" data-target="proiecte" id="nav-proiecte">Proiecte</a></li>
+                    <li class="dropdown">
+                        <a class="nav-btn" data-target="toate-categoriile" id="nav-categorii">Categorii &#9662;</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-btn" data-target="garduri">Garduri</a></li>
+                            <li><a class="nav-btn" data-target="mese">Mese</a></li>
+                            <li><a class="nav-btn" data-target="decoratiuni">Decorațiuni</a></li>
+                            <li><a class="nav-btn" data-target="personalizate">Proiecte Personalizate</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-btn" data-target="contact" id="nav-contact">Contact</a></li>
+                    <li><a class="nav-btn" data-target="cos" id="nav-cos">🛒 Coș (<span id="cart-count">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <div id="view-acasa" class="page-view active-view parallax-bg">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Total Metal Construct</h1>
+                    <p>Calitate, precizie și durabilitate în prelucrarea metalului în România.</p>
+                    <button class="btn nav-btn" data-target="proiecte">Vezi Portofoliu</button>
+                </div>
+            </section>
+
+            <section class="content-container" style="padding-top: 0; margin-top: 0;">
+                <div class="glass-panel" style="max-width: 1000px;">
+                    <h2 class="section-title">Peste 15 ani de excelență și inovație</h2>
+                    
+                    <p style="font-size: 18px; margin-bottom: 20px; text-align: justify;">
+                        Suntem mai mult decât un atelier de confecții metalice; suntem partenerul tău de încredere pentru proiecte industriale, comerciale și rezidențiale de maximă complexitate. Cu o experiență de peste 15 ani pe piața din România, <strong>Total Metal Construct</strong> și-a consolidat o reputație solidă prin rigoare inginerească, seriozitate și o abordare orientată exclusiv către calitatea absolută. 
+                    </p>
+                    <p style="font-size: 16px; margin-bottom: 40px; text-align: justify;">
+                        În tot acest timp, am evoluat continuu, am investit constant în tehnologie modernă și am format o echipă de profesioniști pasionați – de la ingineri proiectanți care conturează fiecare detaliu, până la sudori și operatori CNC cu înaltă calificare. Credem cu tărie că un proiect de succes începe cu o înțelegere profundă a nevoilor clientului.
+                    </p>
+
+                    <h3 style="font-size: 24px; margin-bottom: 20px; text-transform: uppercase; border-left: 4px solid var(--accent); padding-left: 15px;">
+                        Flux tehnologic complet, 100% integrat
+                    </h3>
+                    <p style="margin-bottom: 30px; text-align: justify;">
+                        Ceea ce ne definește și ne diferențiază net pe piață este capacitatea de a gestiona integral fiecare etapă a producției "in-house". Deținem o hală de producție la cele mai înalte standarde, dotată cu echipamente de ultimă generație. Faptul că nu externalizăm aceste procese critice se traduce prin <strong>termene de execuție respectate cu strictețe</strong> și un <strong>control riguros al calității</strong>.
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                        <div class="nav-btn" data-target="laser" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)';">
+                            <h4 style="color: var(--accent); margin-bottom: 15px; font-size: 20px;">⚡ Debitări CNC Laser</h4>
+                            <p style="font-size: 15px; text-align: justify;">Realizăm tăieri de o acuratețe micrometrică pentru piese tehnice, panouri decorative, paravane sau fațade arhitecturale. Click pentru detalii &rarr;</p>
+                        </div>
+                        <div class="nav-btn" data-target="abkant" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)';">
+                            <h4 style="color: var(--accent); margin-bottom: 15px; font-size: 20px;">📐 Îndoire la Abkant</h4>
+                            <p style="font-size: 15px; text-align: justify;">Formăm și profilăm tabla cu o precizie desăvârșită. Reducem numărul de suduri și creștem integritatea structurală. Click pentru detalii &rarr;</p>
+                        </div>
+                        <div class="nav-btn" data-target="sablare" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)';">
+                            <h4 style="color: var(--accent); margin-bottom: 15px; font-size: 20px;">💨 Sablare Profesională</h4>
+                            <p style="font-size: 15px; text-align: justify;">Curățăm metalul în profunzime, la standarde industriale, pentru a asigura o aderență perfectă tratamentelor anticorozive. Click pentru detalii &rarr;</p>
+                        </div>
+                        <div class="nav-btn" data-target="vopsitorie" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)';">
+                            <h4 style="color: var(--accent); margin-bottom: 15px; font-size: 20px;">🎨 Vopsitorie Premium</h4>
+                            <p style="font-size: 15px; text-align: justify;">Finisaje de înaltă calitate, rezistente la factorii de mediu și uzură, disponibile într-o gamă variată de texturi. Click pentru detalii &rarr;</p>
+                        </div>
+                    </div>
+
+                    <p style="text-align: justify; margin-bottom: 20px; font-size: 16px;">
+                        Datorită acestui ecosistem tehnologic complet, acoperim o arie extrem de vastă de lucrări. Colaborăm strâns cu arhitecți, designeri de interior, dezvoltatori imobiliari, antreprenori generali din construcții, dar și cu clienți finali cu viziuni îndrăznețe.
+                    </p>
+                    
+                    <div style="background: rgba(230, 126, 34, 0.15); border: 1px solid var(--accent); color: #fff; padding: 30px; border-radius: 8px; text-align: center; margin-top: 40px;">
+                        <p style="font-weight: 500; font-size: 20px; margin-bottom: 0;">
+                            Alegând <span style="color: var(--accent); font-weight: bold;">Total Metal Construct</span>, alegi siguranța unei execuții fără compromisuri, respect față de termenele stabilite și finisaje care trec testul timpului.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-laser" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Debitări CNC Laser ACME</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; align-items: center;">
+                        <div style="flex: 1; min-width: 300px; font-size: 16px; text-align: justify;">
+                            <h3 style="font-size: 24px; margin-bottom: 20px;">Precizie și viteză de execuție</h3>
+                            <p style="margin-bottom: 20px;">Realizăm tăieri de o acuratețe micrometrică pentru piese tehnice, panouri decorative, paravane sau fațade arhitecturale complexe. Tehnologia Laser CNC ne permite să obținem geometrii complicate, tăieturi perfect curate, fără bavuri, asigurând în același timp o optimizare maximă a materiei prime, reducând astfel costurile finale.</p>
+                            <p style="margin-bottom: 20px;">Echipamentul nostru <strong>ACME CNC Laser</strong> reprezintă vârful de gamă în prelucrarea metalelor. Datorită puterii mari și a softului avansat, putem debita o gamă variată de grosimi cu o viteză ireproșabilă, garantând piese gata de asamblare.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 300px;">
+                            <img src="images/utilaje/Acme.jpeg" alt="ACME CNC Laser" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-abkant" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Îndoire la Abkant CNC</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; align-items: center;">
+                        <div style="flex: 1; min-width: 300px; font-size: 16px; text-align: justify;">
+                            <h3 style="font-size: 24px; margin-bottom: 20px;">Profilare perfectă dintr-o bucată</h3>
+                            <p style="margin-bottom: 20px;">Operațiunea de îndoire a tablei (abkant) este crucială pentru crearea de structuri metalice complexe. Datorită mașinilor noastre CNC, putem forma și profila tabla cu o precizie desăvârșită, repetabilă la nesfârșit pentru producția de serie.</p>
+                            <p style="margin-bottom: 20px;">Prin utilizarea tehnologiei Abkant, avem libertatea de a crea profile atipice, trepte, glafuri, cutii sau carcase tehnice dintr-o single bucată de material. Aceasta <strong>reduce semnificativ numărul de suduri</strong> necesare, crescând dramatic atât rezistența structurală, cât și aspectul estetic al piesei finite.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 300px;">
+                            <img src="images/utilaje/abcant.png" alt="Indoire Abkant" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-sablare" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Sablare Profesională</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; align-items: center;">
+                        <div style="flex: 1; min-width: 300px; font-size: 16px; text-align: justify;">
+                            <h3 style="font-size: 24px; margin-bottom: 20px;">Baza longevității oricărei structuri</h3>
+                            <p style="margin-bottom: 20px;">Orice lucrare metalică de calitate începe cu o pregătire impecabilă a suprafeței. Sablarea este un proces mecanic esențial prin care curățăm metalul în profunzime, utilizând materiale abrazive proiectate sub presiune.</p>
+                            <p style="margin-bottom: 20px;">Această etapă elimină complet rugina, calamina, vopseaua veche și orice alte impurități, creând o ușoară rugozitate pe suprafața metalului. Acest lucru asigură o <strong>aderență mecanică perfectă</strong> pentru straturile de grund și vopsea ce urmează a fi aplicate.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 300px;">
+                            <img src="https://images.unsplash.com/photo-1590502593747-42a996111400?auto=format&fit=crop&w=800&q=80" alt="Sablare Metale" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-vopsitorie" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Vopsitorie Premium</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; align-items: center;">
+                        <div style="flex: 1; min-width: 300px; font-size: 16px; text-align: justify;">
+                            <h3 style="font-size: 24px; margin-bottom: 20px;">Estetică și protecție superioară</h3>
+                            <p style="margin-bottom: 20px;">Etapa finală a procesului nostru de producție dă viață și personalitate fiecărui proiect. În cabina noastră de vopsitorie aplicăm finisaje premium, capabile să reziste la cele mai dure condiții: uzură mecanică, substanțe chimice, intemperii și expunere prelungită la razele UV.</p>
+                            <p style="margin-bottom: 20px;">Fie că este vorba despre o structură industrială robustă sau o piesă de mobilier fină, tip Loft, oferim finisaje de top într-o paletă vastă de culori RAL (mat, lucios, texturat, metalizat). Asigurăm astfel un strat uniform, fără imperfecțiuni.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 300px;">
+                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80" alt="Vopsitorie" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-proiecte" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Portofoliu Proiecte</h2>
+                    <div style="text-align: center; max-width: 900px; margin: 0 auto 50px auto;">
+                        <p style="margin-bottom: 25px; font-size: 18px;">
+                            Selectează unul dintre proiectele noastre de mai jos pentru a vedea galeria completă de imagini:
+                        </p>
+                    </div>
+
+                    <div class="grid">
+                        <div class="nav-btn" data-target="kaufland" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Kaufland</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg" alt="Proiect Kaufland"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="standuri" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Stand-uri</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Standuri/PozaStand1.jpeg" alt="Proiect Standuri"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="nav-btn" data-target="canapele" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Canapele</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Canapele/PozaCanapele1.jpeg" alt="Proiect Canapele"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="insule" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Insule</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Insule/PozaInsule1.jpeg" alt="Proiect Insule"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="balustrade" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Balustrade</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Balustrade/PozaBalustrada1.jpeg" alt="Proiect Balustrade"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="nav-btn" data-target="penny" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Penny</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Penny/PozaCoperta.jpeg" alt="Proiect Penny"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="pescobar" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Pescobar</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Pescobar/PozaCoperta.jpeg" alt="Proiect Pescobar"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="speciale" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Proiecte Speciale</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/Speciale/PozaCoperta.jpeg" alt="Proiecte Speciale"></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-btn" data-target="porti-garduri" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-7px)';" onmouseout="this.style.transform='translateY(0)';">
+                            <h3 style="color: #fff; text-align: center; margin-bottom: 15px; font-size: 22px; text-transform: uppercase;">Porți & Garduri</h3>
+                            <div class="product-card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="product-image"><img src="images/Proiecte/PortiGarduri/PozaCoperta.jpeg" alt="Proiect Porți și Garduri"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-kaufland" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Kaufland</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu lucrările de confecții metalice realizate pentru rețeaua Kaufland.</p>
+                    <div id="container-kaufland"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-standuri" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Stand-uri</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu diverse standuri și structuri expoziționale.</p>
+                    <div id="container-standuri"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-canapele" class="page-view parallax-bg">
+             <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Canapele</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu mobilier metalic tip canapele și structuri de șezut.</p>
+                    <div id="container-canapele"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-penny" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Penny</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu lucrările de confecții metalice realizate pentru rețeaua Penny.</p>
+                    <div id="container-penny"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-insule" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Insule</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto pentru lucrările de tip insule și standuri comerciale.</p>
+                    <div id="container-insule"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-pescobar" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Pescobar</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu amenajările metalice de excepție realizate pentru Taverna Racilor / Pescobar.</p>
+                    <div id="container-pescobar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-balustrade" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Balustrade</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Portofoliu de balustrade premium: fier forjat, CNC laser și design modern.</p>
+                    <div id="container-balustrade"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-speciale" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiecte Speciale</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie dedicată lucrărilor arhitecturale complexe și atipice.</p>
+                    <div id="container-speciale"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-porti-garduri" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="proiecte" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Albume</button>
+                    </div>
+                    <h2 class="section-title">Proiect: Porți și Garduri</h2>
+                    <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Galerie foto cu lucrări premium de porți și garduri metalice.</p>
+                    <div id="container-porti-garduri"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-garduri" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="toate-categoriile" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Categorii</button>
+                    </div>
+                    <h2 class="section-title">Toate Gardurile & Porțile</h2>
+                    <div id="container-garduri"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-mese" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="toate-categoriile" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Categorii</button>
+                    </div>
+                    <h2 class="section-title">Mese & Mobilier Loft</h2>
+                    <div id="container-mese"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-decoratiuni" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="toate-categoriile" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Categorii</button>
+                    </div>
+                    <h2 class="section-title">Decorațiuni Metalice</h2>
+                    <div id="container-decoratiuni"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-personalizate" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <div style="text-align: left; width: 100%;">
+                        <button class="btn nav-btn" data-target="toate-categoriile" style="margin-bottom: 30px; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; cursor: pointer;">&larr; Înapoi la Categorii</button>
+                    </div>
+                    <h2 class="section-title">Proiecte Personalizate</h2>
+            
+                    <div style="padding: 40px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-top: 20px; text-align: center;">
+                        <p style="font-size: 20px; line-height: 1.6; color: #fff; margin-bottom: 25px;">
+                            Fiecare idee prinde viață în atelierul nostru. Dacă ai un proiect unic, o schiță specială sau o viziune neconvențională, suntem aici să o transformăm în realitate.
+                        </p>
+                        <p style="font-size: 18px; color: #ddd; margin-bottom: 30px;">
+                            Pentru o ofertă personalizată sau pentru a discuta detaliile proiectului tău, te rugăm să ne contactezi prin email la:
+                        </p>
+                        <a href="mailto:abcdef@gmail.com" style="display: inline-block; font-size: 24px; color: var(--accent); font-weight: bold; text-decoration: none; padding: 15px 30px; border: 2px solid var(--accent); border-radius: 8px;">
+                            📧 abcdef@gmail.com
+                        </a>
+                    </div>
+
+                    <div id="container-personalizate" style="margin-top: 45px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-toate-categoriile" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel">
+                    <h2 class="section-title">Toate Categoriile</h2>
+                    
+                    <div class="grid">
+                        <div class="nav-btn product-card" data-target="garduri" style="cursor: pointer; height: auto; display: flex; flex-direction: column;">
+                            <div class="product-image" style="height: 250px;">
+                                <img src="images/garduri/Gard1.jpeg" alt="Garduri">
+                            </div>
+                            <h3 style="text-align: center; padding: 15px; color: #333; background: #fff; margin: 0;">Garduri</h3>
+                        </div>
+
+                        <div class="nav-btn product-card" data-target="mese" style="cursor: pointer; height: auto; display: flex; flex-direction: column;">
+                            <div class="product-image" style="height: 250px; background-color: transparent; padding: 20px;">
+                                <img src="images/mese/MasaBuna4.png" alt="Mese" style="object-fit: contain;">
+                            </div>
+                            <h3 style="text-align: center; padding: 15px; color: #333; background: #fff; margin: 0;">Mese</h3>
+                        </div>
+
+                        <div class="nav-btn product-card" data-target="decoratiuni" style="cursor: pointer; height: auto; display: flex; flex-direction: column;">
+                            <div class="product-image" style="height: 250px;">
+                                <img src="images/decoratiuni/Deco1.jpeg" alt="Decorațiuni">
+                            </div>
+                            <h3 style="text-align: center; padding: 15px; color: #333; background: #fff; margin: 0;">Decorațiuni</h3>
+                        </div>
+
+                        <div class="nav-btn product-card" data-target="personalizate" style="cursor: pointer; height: auto; display: flex; flex-direction: column;">
+                            <div class="product-image" style="height: 250px; background-color: transparent; padding: 10px;">
+                                <img src="images/Proiecte/Balustrade/PozaBalustrada2.jpeg" alt="Proiecte Personalizate" style="object-fit: cover; width: 100%; height: 100%;">
+                            </div>
+                            <h3 style="text-align: center; padding: 15px; color: #333; background: #fff; margin: 0;">Proiecte Personalizate</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-contact" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel" style="max-width: 600px; text-align: center;">
+                    <h2 class="section-title">Contactează-ne</h2>
+                    <p style="margin-bottom: 40px; font-size: 18px;">Suntem pregătiți să transformăm proiectul tău în realitate.</p>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <div style="width: 100%; max-width: 350px; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h4 style="color: var(--accent); text-transform: uppercase; margin-bottom: 10px; font-size: 18px;">📍 Locație</h4>
+                            <p style="font-weight: bold; font-size: 18px; color: white;">Pitești, România</p>
+                        </div>
+                        <div style="width: 100%; max-width: 350px; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h4 style="color: var(--accent); text-transform: uppercase; margin-bottom: 10px; font-size: 18px;">📞 Telefon</h4>
+                            <p style="font-weight: bold; font-size: 18px; color: white;">0712 123 123</p>
+                        </div>
+                        <div style="width: 100%; max-width: 350px; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h4 style="color: var(--accent); text-transform: uppercase; margin-bottom: 10px; font-size: 18px;">✉️ Email</h4>
+                            <p style="font-weight: bold; font-size: 18px; color: white;">abcdef@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-cos" class="page-view parallax-bg">
+            <div class="content-container">
+                <div class="glass-panel" style="max-width: 800px; margin: 0 auto;">
+                    <h2 class="section-title">Coșul Meu</h2>
+                    
+                    <div id="cart-items-container" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                        <p style="text-align: center; color: #ccc;">Coșul este gol momentan.</p>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+                        <h3 style="font-size: 24px;">Total: <span id="cart-total" style="color: var(--accent);">0</span> RON</h3>
+                        <button class="btn" onclick="alert('Funcționalitatea de finalizare comandă va fi implementată curând!')">Finalizează Comanda</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Total Metal Construct. Toate drepturile rezervate.</p>
+    </footer>
+
+    <script>
+        // --- DATABASE POZE & PRODUSE ---
+        const productsDatabase = [
+            // Kaufland
+            { id: 1, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg' },
+            { id: 2, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland2.jpeg' },
+            
+            // Stand-uri
+            { id: 3, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand1.jpeg' },
+            { id: 4, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand2.jpeg' },
+            { id: 5, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand3.jpeg' },
+            { id: 6, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand4.jpeg' },
+
+            // Penny
+            { id: 7, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny1.jpeg' },
+            { id: 8, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny2.jpeg' },
+            
+            // Insule
+            { id: 9, category: 'insule', img: 'images/Proiecte/Insule/PozaInsule1.jpeg' },
+            { id: 10, category: 'insule', img: 'images/Proiecte/Insule/PozaInsule2.jpeg' },
+            { id: 11, category: 'insule', img: 'images/Proiecte/Insule/PozaInsule3.jpeg' },
+
+            // Pescobar
+            { id: 12, category: 'pescobar', img: 'images/Proiecte/Pescobar/Poza1.jpeg' },
+
+            // Balustrade
+            { id: 13, category: 'balustrade', img: 'images/Proiecte/Balustrade/PozaBalustrada1.jpeg' },
+            { id: 14, category: 'balustrade', img: 'images/Proiecte/Balustrade/PozaBalustrada.jpeg' },
+
+            // Proiecte Speciale
+            { id: 15, category: 'speciale', img: 'images/Proiecte/Speciale/Poza1.jpeg' },
+
+            // Porti si Garduri
+            { id: 16, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza1.jpeg' },
+            { id: 17, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza2.jpeg' },
+            
+            // Garduri
+            { id: 18, category: 'garduri', img: 'images/garduri/Gard1.jpeg' },
+            
+            // --- MESE MAGAZIN ---
+            { id: 101, category: 'mese', title: 'Masă Loft Model 1', price: 1000, img: 'images/mese/MasaBuna1.png' },
+            { id: 102, category: 'mese', title: 'Masă Loft Model 2', price: 1000, img: 'images/mese/MasaBuna2.png' },
+            { id: 103, category: 'mese', title: 'Masă Loft Model 3', price: 1000, img: 'images/mese/MasaBuna3.png' },
+            { id: 104, category: 'mese', title: 'Masă Loft Model 4', price: 1000, img: 'images/mese/MasaBuna4.png' },
+            { id: 105, category: 'mese', title: 'Masă Loft Model 5', price: 1000, img: 'images/mese/MasaBuna5.png' },
+            { id: 106, category: 'mese', title: 'Masă Loft Model 6', price: 1000, img: 'images/mese/MasaBuna6.png' },
+            { id: 107, category: 'mese', title: 'Masă Loft Model 7', price: 1000, img: 'images/mese/MasaBuna7.png' },
+            { id: 108, category: 'mese', title: 'Masă Loft Model 8', price: 1000, img: 'images/mese/MasaBuna8.png' },
+            { id: 109, category: 'mese', title: 'Masă Loft Model 9', price: 1000, img: 'images/mese/MasaBuna9.png' },
+            { id: 110, category: 'mese', title: 'Masă Loft Model 10', price: 1000, img: 'images/mese/MasaBuna10.png' },
+            { id: 111, category: 'mese', title: 'Masă Loft Model 11', price: 1000, img: 'images/mese/MasaBuna11.png' },
+            { id: 112, category: 'mese', title: 'Masă Loft Model 12', price: 1000, img: 'images/mese/MasaBuna12.png' },
+            { id: 113, category: 'mese', title: 'Masă Loft Model 13', price: 1000, img: 'images/mese/MasaBuna13.png' },
+            { id: 114, category: 'mese', title: 'Masă Loft Model 14', price: 1000, img: 'images/mese/MasaBuna14.png' },
+            { id: 115, category: 'mese', title: 'Masă Loft Model 15', price: 1000, img: 'images/mese/MasaBuna15.png' },
+            { id: 116, category: 'mese', title: 'Masă Loft Model 16', price: 1000, img: 'images/mese/MasaBuna16.png' },
+            { id: 117, category: 'mese', title: 'Masă Loft Model 17', price: 1000, img: 'images/mese/MasaBuna17.png' },
+            { id: 118, category: 'mese', title: 'Masă Loft Model 18', price: 1000, img: 'images/mese/MasaBuna18.png' },
+            { id: 119, category: 'mese', title: 'Masă Loft Model 19', price: 1000, img: 'images/mese/MasaBuna19.png' },
+            { id: 120, category: 'mese', title: 'Masă Loft Model 20', price: 1000, img: 'images/mese/MasaBuna20.png' },
+            { id: 121, category: 'mese', title: 'Masă Loft Model 21', price: 1000, img: 'images/mese/MasaBuna21.png' },
+            { id: 122, category: 'mese', title: 'Masă Loft Model 22', price: 1000, img: 'images/mese/MasaBuna22.png' },
+            { id: 123, category: 'mese', title: 'Masă Loft Model 23', price: 1000, img: 'images/mese/MasaBuna23.png' },
+
+            // --- IMAGINI PENTRU SECȚIUNEA PROIECTE PERSONALIZATE ---
+            { id: 201, category: 'personalizate', img: 'images/Proiecte/Balustrade/PozaBalustrada2.jpeg' },
+            { id: 202, category: 'personalizate', img: 'images/Proiecte/Standuri/PozaStand1.jpeg' },
+            { id: 203, category: 'personalizate', img: 'images/Proiecte/Insule/PozaInsule1.jpeg' },
+
+            // Decorațiuni
+            { id: 20, category: 'decoratiuni', img: 'images/decoratiuni/Deco1.jpeg' },
+
+            // Canapele
+            { id: 21, category: 'canapele', img: 'images/Proiecte/Canapele/PozaCanapele1.jpeg' },
+            { id: 22, category: 'canapele', img: 'images/Proiecte/Canapele/PozaCanapele2.jpeg' },
+            { id: 23, category: 'canapele', img: 'images/Proiecte/Canapele/PozaCanapele3.jpeg' }
+        ];
+
+        // --- SISTEM DE PAGINARE SI RANDARE ---
+        const ITEMS_PER_PAGE = 9;
+        const categoryPages = {}; 
+
+        function renderCatalogue() {
+            const categories = ['garduri', 'standuri', 'canapele', 'mese', 'decoratiuni', 'kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri', 'personalizate'];
+            
+            categories.forEach(cat => {
+                renderCategory(cat, 1);
+            });
+        }
+
+        function renderCategory(cat, page) {
+            const container = document.getElementById(`container-${cat}`);
+            if (!container) return;
+            
+            if (!categoryPages[cat]) categoryPages[cat] = 1;
+            if (page) categoryPages[cat] = page;
+            const currentPage = categoryPages[cat];
+            
+            const filtered = productsDatabase.filter(p => p.category === cat);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="empty-message">Noi imagini vor fi adăugate în curând!</p>`;
+                return;
+            }
+
+            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+            let html = '<div class="grid">';
+            html += paginatedItems.map(prod => `
+                <div class="product-card" style="${prod.price ? 'height: auto; display: flex; flex-direction: column;' : ''}">
+                    <div class="product-image" style="${prod.price ? 'height: 250px; background-color: transparent; padding: 20px;' : ''}">
+                        <img src="${prod.img}" alt="${prod.title ? prod.title : 'Proiect Total Metal Construct'}" loading="lazy" style="${prod.price ? 'object-fit: contain;' : ''}">
+                    </div>
+                    ${prod.price ? `
+                    <div style="padding: 15px; text-align: center; background: #fff; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="color: #333; font-size: 18px; margin-bottom: 5px;">${prod.title}</h3>
+                            <p style="color: var(--accent); font-weight: bold; font-size: 20px; margin-bottom: 15px;">${prod.price} RON</p>
+                        </div>
+                        <button class="btn" onclick="addToCart(${prod.id})" style="width: 100%; font-size: 14px; padding: 10px;">Adaugă în coș</button>
+                    </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            html += '</div>';
+
+            if (totalPages > 1) {
+                html += '<div style="display: flex; justify-content: center; gap: 10px; margin-top: 40px;">';
+                
+                if (currentPage > 1) {
+                    html += `<button class="btn" style="padding: 8px 15px; background: #333;" onclick="changePage('${cat}', ${currentPage - 1})">&laquo; Înapoi</button>`;
+                }
+
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `<button class="btn" style="padding: 8px 15px; ${i === currentPage ? 'background: var(--accent);' : 'background: #333;'}" onclick="changePage('${cat}', ${i})">${i}</button>`;
+                }
+
+                if (currentPage < totalPages) {
+                    html += `<button class="btn" style="padding: 8px 15px; background: #333;" onclick="changePage('${cat}', ${currentPage + 1})">Următoarea &raquo;</button>`;
+                }
+
+                html += '</div>';
+            }
+
+            container.innerHTML = html;
+        }
+
+        function changePage(cat, page) {
+            renderCategory(cat, page);
+            const viewElement = document.getElementById(`view-${cat}`);
+            if (viewElement) {
+                window.scrollTo({ top: viewElement.offsetTop - 80, behavior: 'smooth' });
+            }
+        }
+
+        // --- LOGICA COS DE CUMPARATURI ---
+        let cart = [];
+
+        function addToCart(productId) {
+            const product = productsDatabase.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                updateCartCount();
+                alert(`${product.title} a fost adăugat în coș!`);
+                renderCartPage(); 
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCartPage();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function renderCartPage() {
+            const container = document.getElementById('cart-items-container');
+            const totalElement = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: #ccc;">Coșul este gol momentan.</p>`;
+                totalElement.innerText = "0";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: #333;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="${item.img}" style="width: 60px; height: 60px; object-fit: contain; border-radius: 4px;">
+                        <h4 style="margin: 0; font-size: 16px;">${item.title}</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <span style="font-weight: bold; color: var(--accent);">${item.price} RON</span>
+                        <button onclick="removeFromCart(${index})" style="background: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">Sterge</button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+            
+            totalElement.innerText = total;
+        }
+
+        // --- SISTEM DE NAVIGARE INTRE PAGINI ---
+        function showPage(pageId, pushToHistory = true) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active-view');
+            });
+
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const viewElement = document.getElementById(`view-${pageId}`);
+            if (viewElement) viewElement.classList.add('active-view');
+
+            if (['garduri', 'mese', 'decoratiuni', 'personalizate', 'toate-categoriile'].includes(pageId)) {
+                document.getElementById('nav-categorii').classList.add('active');
+            } else if (['laser', 'abkant', 'sablare', 'vopsitorie'].includes(pageId)) {
+                // Pagini tehnologice
+            } else if (['kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri', 'standuri', 'canapele'].includes(pageId)) {
+                const activeNav = document.getElementById('nav-proiecte');
+                if (activeNav) activeNav.classList.add('active');
+            } else {
+                const activeNav = document.getElementById(`nav-${pageId}`);
+                if (activeNav) activeNav.classList.add('active');
+                
+                if (pageId === 'cos') renderCartPage();
+            }
+
+            if (pushToHistory) {
+                history.pushState({ page: pageId }, "", `#${pageId}`);
+            }
+
+            document.getElementById('nav-links').classList.remove('show-menu');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCatalogue();
+            history.replaceState({ page: 'acasa' }, "", "#acasa");
+
+            const hamburger = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('show-menu');
+            });
+
+            document.querySelectorAll('.nav-btn, .logo').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const target = e.currentTarget.getAttribute('data-target');
+                    if (target) showPage(target);
+                });
+            });
+        });
+
+        // --- BROWSER BACK BUTTON ---
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.page) {
+                showPage(event.state.page, false);
+            } else {
+                showPage('acasa', false);
+            }
+        });
+    </script>
+</body>
+</html>
