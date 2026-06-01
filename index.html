@@ -642,120 +642,98 @@
         <p>&copy; 2026 Total Metal Construct. Toate drepturile rezervate.</p>
     </footer>
 
-    <script>
-        // --- DATABASE POZE ---
-        const productsDatabase = [
-            // Kaufland
-            { id: 1, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg' },
-            { id: 2, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland2.jpeg' },
+<script>
+    // --- DATABASE POZE ---
+    const productsDatabase = [
+        { id: 1, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg' },
+        { id: 2, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland2.jpeg' },
+        { id: 3, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand1.jpeg' },
+        { id: 4, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny1.jpeg' },
+        { id: 5, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny2.jpeg' },
+        { id: 6, category: 'insule', img: 'images/Proiecte/Insule/Poza1.jpeg' },
+        { id: 7, category: 'pescobar', img: 'images/Proiecte/Pescobar/Poza1.jpeg' },
+        { id: 8, category: 'balustrade', img: 'images/Proiecte/Balustrade/Poza1.jpeg' },
+        { id: 9, category: 'speciale', img: 'images/Proiecte/Speciale/Poza1.jpeg' },
+        { id: 10, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza1.jpeg' },
+        { id: 11, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza2.jpeg' },
+        { id: 12, category: 'garduri', img: 'images/garduri/Gard1.jpeg' },
+        { id: 13, category: 'mese', img: 'images/mese/Masa1.jpeg' },
+        { id: 14, category: 'decoratiuni', img: 'images/decoratiuni/Deco1.jpeg' }
+    ];
 
-            // Stand-uri
-            { id: 14, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand1.jpeg' },
-            { id: 15, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand2.jpeg' },
-            { id: 16, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand3.jpeg' },
-            { id: 17, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStand4.jpeg' },
-          
-            // Penny
-            { id: 3, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny1.jpeg' },
-            { id: 4, category: 'penny', img: 'images/Proiecte/Penny/PozaProiectPenny2.jpeg' },
-            
-            // Insule
-            { id: 5, category: 'insule', img: 'images/Proiecte/Insule/Poza1.jpeg' },
+    // --- INCARCARE POZE IN GRILE ---
+    function renderCatalogue() {
+        // AM ADĂUGAT 'standuri' ÎN LISTA DE MAI JOS:
+        const categories = ['garduri', 'mese', 'decoratiuni', 'kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri', 'standuri'];
+        
+        categories.forEach(cat => {
+            const container = document.getElementById(`container-${cat}`);
+            if (!container) return;
+            
+            const filtered = productsDatabase.filter(p => p.category === cat);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="empty-message">Noi imagini vor fi adăugate în curând!</p>`;
+                return;
+            }
 
-            // Pescobar
-            { id: 6, category: 'pescobar', img: 'images/Proiecte/Pescobar/Poza1.jpeg' },
+            container.innerHTML = filtered.map(prod => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${prod.img}" alt="Proiect Total Metal Construct" loading="lazy">
+                    </div>
+                </div>
+            `).join('');
+        });
+    }
 
-            // Balustrade
-            { id: 7, category: 'balustrade', img: 'images/Proiecte/Balustrade/Poza1.jpeg' },
-            
-            // Proiecte Speciale
-            { id: 8, category: 'speciale', img: 'images/Proiecte/Speciale/Poza1.jpeg' },
+    // --- SISTEM DE NAVIGARE INTRE PAGINI ---
+    function showPage(pageId) {
+        document.querySelectorAll('.page-view').forEach(view => {
+            view.classList.remove('active-view');
+        });
 
-            // Porti si Garduri (Album Nou)
-            { id: 9, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza1.jpeg' },
-            { id: 10, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza2.jpeg' },
-            
-            // Categorii Vechi (Meniu Sus)
-            { id: 11, category: 'garduri', img: 'images/garduri/Gard1.jpeg' },
-            { id: 12, category: 'mese', img: 'images/mese/Masa1.jpeg' },
-            { id: 13, category: 'decoratiuni', img: 'images/decoratiuni/Deco1.jpeg' }
-        ];
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.classList.remove('active');
+        });
 
-        // --- INCARCARE POZE IN GRILE ---
-        function renderCatalogue() {
-            // Am actualizat lista pentru a randa si noul album (porti-garduri)
-            const categories = ['garduri', 'mese', 'decoratiuni', 'kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri'];
-            
-            categories.forEach(cat => {
-                const container = document.getElementById(`container-${cat}`);
-                if (!container) return;
-                
-                const filtered = productsDatabase.filter(p => p.category === cat);
-                
-                if (filtered.length === 0) {
-                    container.innerHTML = `<p class="empty-message">Noi imagini vor fi adăugate în curând!</p>`;
-                    return;
-                }
+        const viewElement = document.getElementById(`view-${pageId}`);
+        if (viewElement) viewElement.classList.add('active-view');
 
-                container.innerHTML = filtered.map(prod => `
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="${prod.img}" alt="Proiect Total Metal Construct" loading="lazy">
-                        </div>
-                    </div>
-                `).join('');
-            });
-        }
+        // AM ADĂUGAT 'standuri' ÎN LISTA DE PROIECTE DE MAI JOS:
+        const listaProiecte = ['kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri', 'standuri'];
 
-        // --- SISTEM DE NAVIGARE INTRE PAGINI ---
-        function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(view => {
-                view.classList.remove('active-view');
-            });
+        if (['garduri', 'mese', 'decoratiuni'].includes(pageId)) {
+            document.getElementById('nav-categorii').classList.add('active');
+        } else if (['laser', 'abkant', 'sablare', 'vopsitorie'].includes(pageId)) {
+            // Rămâne gol
+        } else if (listaProiecte.includes(pageId)) {
+            const activeNav = document.getElementById('nav-proiecte');
+            if (activeNav) activeNav.classList.add('active');
+        } else {
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) activeNav.classList.add('active');
+        }
 
-            document.querySelectorAll('nav ul li a').forEach(link => {
-                link.classList.remove('active');
-            });
+        document.getElementById('nav-links').classList.remove('show-menu');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-            const viewElement = document.getElementById(`view-${pageId}`);
-            if (viewElement) viewElement.classList.add('active-view');
-
-            if (['garduri', 'mese', 'decoratiuni'].includes(pageId)) {
-                document.getElementById('nav-categorii').classList.add('active');
-            } else if (['laser', 'abkant', 'sablare', 'vopsitorie'].includes(pageId)) {
-                // Pagini tehnologice, meniul principal ramane nestrast
-            } else if (['kaufland', 'penny', 'insule', 'pescobar', 'balustrade', 'speciale', 'porti-garduri'].includes(pageId)) {
-                // Tine aprins butonul "Proiecte" din meniu cand esti intr-un album specific
-                const activeNav = document.getElementById('nav-proiecte');
-                if (activeNav) activeNav.classList.add('active');
-            } else {
-                const activeNav = document.getElementById(`nav-${pageId}`);
-                if (activeNav) activeNav.classList.add('active');
-            }
-
-            document.getElementById('nav-links').classList.remove('show-menu');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // --- EVENT LISTENERS ---
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCatalogue();
-
-            const hamburger = document.getElementById('hamburger-menu');
-            const navLinks = document.getElementById('nav-links');
-            
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('show-menu');
-            });
-
-            document.querySelectorAll('.nav-btn, .logo').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const target = e.currentTarget.getAttribute('data-target');
-                    if (target) showPage(target);
-                });
-            });
-        });
-    </script>
+    // --- EVENT LISTENERS ---
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCatalogue();
+        // ... (restul codului pentru burger menu și butoane rămâne la fel)
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('show-menu'); });
+        document.querySelectorAll('.nav-btn, .logo').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const target = e.currentTarget.getAttribute('data-target');
+                if (target) showPage(target);
+            });
+        });
+    });
+</script>
 </body>
 </html>
         nav ul li a {
