@@ -3,95 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Total Metal Construct</title>
+    <title>Total Metal Construct | Confecții Metalice Premium</title>
     <style>
-        /* CSS-ul rămâne la fel pentru designul tău. L-am scurtat pentru claritate */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        :root { --primary: #1a1a1a; --accent: #e67e22; }
-        body { background: #1a1a1a; color: white; min-height: 100vh; }
-        .page-view { display: none; padding: 100px 20px; }
-        .active-view { display: block; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
-        .card { background: #333; padding: 15px; border-radius: 8px; cursor: pointer; }
-        img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; }
-        .btn { background: var(--accent); color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        :root { --primary: #1a1a1a; --accent: #e67e22; --light: #f9f9f9; --text-dark: #2c3e50; --text-light: #ffffff; --card-bg: #ffffff; --nav-height: 74px; }
+        body { background-color: var(--light); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: var(--primary); position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); height: var(--nav-height); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 100%; }
+        .logo { color: var(--text-light); font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+        .logo span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; align-items: center; }
+        nav ul li { margin-left: 25px; position: relative; }
+        nav ul li a { color: var(--text-light); text-decoration: none; font-weight: 500; padding: 25px 0; display: inline-block; transition: color 0.3s; cursor: pointer; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background-color: #242424; min-width: 180px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); list-style: none; padding: 10px 0; border-radius: 0 0 4px 4px; border-top: 3px solid var(--accent); opacity: 0; visibility: hidden; transform: translateY(15px); transition: all 0.3s ease; }
+        .dropdown-menu li { margin: 0; display: block; }
+        .dropdown-menu li a { padding: 10px 20px; display: block; font-size: 14px; color: #ccc; }
+        .dropdown-menu li a:hover { background-color: #1a1a1a; color: var(--accent); padding-left: 25px; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--text-light); }
+        .parallax-bg { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80') no-repeat center center / cover; background-attachment: fixed; min-height: 100vh; }
+        .glass-panel { background: rgba(20, 20, 20, 0.85); padding: 50px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); margin: 0 auto; text-align: left; color: #eaeaea; line-height: 1.8; }
+        .hero { background: transparent; height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--text-light); padding-top: var(--nav-height); }
+        .page-view { display: none; flex-grow: 1; }
+        .page-view.active-view { display: block; }
+        .content-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px 20px; padding-top: calc(var(--nav-height) + 40px); }
+        .section-title { text-align: center; font-size: 32px; text-transform: uppercase; margin-bottom: 40px; position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--accent); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .product-card { background-color: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 350px; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        footer { background-color: #111; color: #777; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; }
+        @media (max-width: 768px) { .hamburger { display: flex; } nav ul { display: none; } nav ul.show-menu { display: flex; position: absolute; top: var(--nav-height); left: 0; width: 100%; background: var(--primary); flex-direction: column; } }
     </style>
 </head>
 <body>
-
-    <!-- Meniu Simplificat -->
-    <header style="padding: 20px; position: fixed; width: 100%; background: #000;">
-        <button class="nav-btn" data-target="acasa">Acasă</button>
-        <button class="nav-btn" data-target="proiecte">Proiecte</button>
+    <header>
+        <div class="nav-container">
+            <div class="logo" data-target="acasa">Total Metal <span>Construct</span></div>
+            <div class="hamburger" id="hamburger-menu"><span></span><span></span><span></span></div>
+            <nav><ul id="nav-links">
+                <li><a class="nav-btn active" data-target="acasa" id="nav-acasa">Acasă</a></li>
+                <li><a class="nav-btn" data-target="proiecte" id="nav-proiecte">Proiecte</a></li>
+                <li class="dropdown"><a id="nav-categorii">Categorii &#9662;</a><ul class="dropdown-menu">
+                    <li><a class="nav-btn" data-target="garduri">Garduri</a></li>
+                    <li><a class="nav-btn" data-target="mese">Mese</a></li>
+                    <li><a class="nav-btn" data-target="decoratiuni">Decorațiuni</a></li>
+                </ul></li>
+                <li><a class="nav-btn" data-target="contact" id="nav-contact">Contact</a></li>
+            </ul></nav>
+        </div>
     </header>
 
     <main>
-        <div id="view-acasa" class="page-view active-view"><h1>Bine ai venit!</h1></div>
-        
-        <!-- Aici se vor genera automat coperțile -->
-        <div id="view-proiecte" class="page-view">
-            <h2 style="text-align:center; margin-bottom: 40px;">Proiectele Noastre</h2>
-            <div id="grid-proiecte" class="grid"></div>
+        <div id="view-acasa" class="page-view active-view parallax-bg">
+            <section class="hero"><div class="hero-content"><h1>Total Metal Construct</h1><button class="btn nav-btn" data-target="proiecte">Vezi Portofoliu</button></div></section>
         </div>
 
-        <!-- Aici se vor genera paginile individuale -->
-        <div id="container-galerii"></div>
-    </main>
-
-    <script>
-        /**
-         * MODIFICĂ DOAR DE AICI!
-         * Adaugă un proiect nou aici și totul se va crea automat.
-         */
-        const projects = {
-            'kaufland': { title: 'Kaufland', cover: 'images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg', images: ['images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg', 'images/Proiecte/Kaufland/PozaProiectKaufland2.jpeg'] },
-            'standuri': { title: 'Stand-uri', cover: 'images/Proiecte/Standuri/PozaCoperta.jpeg', images: ['images/Proiecte/Standuri/Poza1.jpeg', 'images/Proiecte/Standuri/Poza2.jpeg'] }
-        };
-
-        // --- Logica de generare automată (nu trebuie să atingi aici) ---
-        function init() {
-            const grid = document.getElementById('grid-proiecte');
-            const galeries = document.getElementById('container-galerii');
-
-            for (const key in projects) {
-                const p = projects[key];
-                // Creează coperta
-                grid.innerHTML += `<div class="card nav-btn" data-target="${key}"><img src="${p.cover}"><h3>${p.title}</h3></div>`;
-                // Creează pagina de galerie
-                galeries.innerHTML += `
-                    <div id="view-${key}" class="page-view">
-                        <button class="btn nav-btn" data-target="proiecte">Înapoi</button>
-                        <h2>${p.title}</h2>
-                        <div class="grid">${p.images.map(img => `<div class="card"><img src="${img}"></div>`).join('')}</div>
-                    </div>`;
-            }
-            // Adaugă event listeners
-            document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', (e) => {
-                document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view'));
-                document.getElementById('view-' + e.currentTarget.getAttribute('data-target')).classList.add('active-view');
-            }));
-        }
-        init();
-    </script>
-</body>
-</html>                    <div class="nav-btn" data-target="pescobar" style="cursor:pointer;"><h3 style="text-align:center;">Pescobar</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Pescobar/PozaCoperta.jpeg"></div></div></div>
-                    <div class="nav-btn" data-target="balustrade" style="cursor:pointer;"><h3 style="text-align:center;">Balustrade</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Balustrade/PozaBalustrada1.jpeg"></div></div></div>
-                    <div class="nav-btn" data-target="speciale" style="cursor:pointer;"><h3 style="text-align:center;">Proiecte Speciale</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Speciale/PozaCoperta.jpeg"></div></div></div>
-                    <div class="nav-btn" data-target="standuri" style="cursor:pointer;"><h3 style="text-align:center;">Stand-uri</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Standuri/PozaCoperta.jpeg"></div></div></div>
-                    <div class="nav-btn" data-target="porti-garduri" style="cursor:pointer;"><h3 style="text-align:center;">Porți & Garduri</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/PortiGarduri/PozaCoperta.jpeg"></div></div></div>
+        <div id="view-proiecte" class="page-view parallax-bg">
+            <div class="content-container"><div class="glass-panel">
+                <h2 class="section-title">Portofoliu Proiecte</h2>
+                <div class="grid">
+                    <div class="nav-btn" data-target="kaufland"><h3 style="text-align:center;">Kaufland</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="penny"><h3 style="text-align:center;">Penny</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Penny/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="insule"><h3 style="text-align:center;">Insule</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Insule/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="pescobar"><h3 style="text-align:center;">Pescobar</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Pescobar/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="balustrade"><h3 style="text-align:center;">Balustrade</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Balustrade/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="speciale"><h3 style="text-align:center;">Proiecte Speciale</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Speciale/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="standuri"><h3 style="text-align:center;">Stand-uri</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/Standuri/PozaCoperta.jpeg"></div></div></div>
+                    <div class="nav-btn" data-target="porti-garduri"><h3 style="text-align:center;">Porți & Garduri</h3><div class="product-card"><div class="product-image"><img src="images/Proiecte/PortiGarduri/PozaCoperta.jpeg"></div></div></div>
                 </div>
             </div></div>
         </div>
 
-        <!-- Pagini Galerie -->
-        <div id="view-kaufland" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Kaufland</h2><div id="container-kaufland" class="grid"></div></div></div></div>
-        <div id="view-penny" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Penny</h2><div id="container-penny" class="grid"></div></div></div></div>
-        <div id="view-insule" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Insule</h2><div id="container-insule" class="grid"></div></div></div></div>
-        <div id="view-pescobar" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Pescobar</h2><div id="container-pescobar" class="grid"></div></div></div></div>
-        <div id="view-balustrade" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Balustrade</h2><div id="container-balustrade" class="grid"></div></div></div></div>
-        <div id="view-speciale" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Proiecte Speciale</h2><div id="container-speciale" class="grid"></div></div></div></div>
-        <div id="view-standuri" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Stand-uri</h2><div id="container-standuri" class="grid"></div></div></div></div>
-        <div id="view-porti-garduri" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="btn nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Porți & Garduri</h2><div id="container-porti-garduri" class="grid"></div></div></div></div>
+        <div id="view-kaufland" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Kaufland</h2><div id="container-kaufland" class="grid"></div></div></div></div>
+        <div id="view-penny" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Penny</h2><div id="container-penny" class="grid"></div></div></div></div>
+        <div id="view-insule" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Insule</h2><div id="container-insule" class="grid"></div></div></div></div>
+        <div id="view-pescobar" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Pescobar</h2><div id="container-pescobar" class="grid"></div></div></div></div>
+        <div id="view-balustrade" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Balustrade</h2><div id="container-balustrade" class="grid"></div></div></div></div>
+        <div id="view-speciale" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Proiecte Speciale</h2><div id="container-speciale" class="grid"></div></div></div></div>
+        <div id="view-standuri" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Stand-uri</h2><div id="container-standuri" class="grid"></div></div></div></div>
+        <div id="view-porti-garduri" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><button class="nav-btn" data-target="proiecte">&larr; Înapoi</button><h2 class="section-title">Porți & Garduri</h2><div id="container-porti-garduri" class="grid"></div></div></div></div>
+
         <div id="view-contact" class="page-view parallax-bg"><div class="content-container"><div class="glass-panel"><h2>Contact</h2><p>Pitești, România</p></div></div></div>
     </main>
 
@@ -99,11 +93,11 @@
         const productsDatabase = [
             { id: 1, category: 'kaufland', img: 'images/Proiecte/Kaufland/PozaProiectKaufland1.jpeg' },
             { id: 2, category: 'penny', img: 'images/Proiecte/Penny/Poza1.jpeg' },
-            { id: 3, category: 'insule', img: 'images/Proiecte/Insule/PozaInsule1.jpeg' },
+            { id: 3, category: 'insule', img: 'images/Proiecte/Insule/Poza1.jpeg' },
             { id: 4, category: 'pescobar', img: 'images/Proiecte/Pescobar/Poza1.jpeg' },
-            { id: 5, category: 'balustrade', img: 'images/Proiecte/Balustrade/PozaBalustrada1.jpeg' },
+            { id: 5, category: 'balustrade', img: 'images/Proiecte/Balustrade/Poza1.jpeg' },
             { id: 6, category: 'speciale', img: 'images/Proiecte/Speciale/Poza1.jpeg' },
-            { id: 7, category: 'standuri', img: 'images/Proiecte/Standuri/PozaStan1.jpeg' },
+            { id: 7, category: 'standuri', img: 'images/Proiecte/Standuri/Poza1.jpeg' },
             { id: 8, category: 'porti-garduri', img: 'images/Proiecte/PortiGarduri/Poza1.jpeg' }
         ];
 
@@ -120,9 +114,7 @@
         
         function showPage(pageId) {
             document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view'));
-            const view = document.getElementById(`view-${pageId}`);
-            if(view) view.classList.add('active-view');
-            document.getElementById('nav-links').classList.remove('show-menu');
+            document.getElementById(`view-${pageId}`).classList.add('active-view');
             window.scrollTo(0, 0);
         }
 
